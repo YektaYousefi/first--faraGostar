@@ -31,5 +31,8 @@ namespace WebApplication2.Models
         public string Description { get; set; }
 
         public string PaymentUrl { get; set; }
+
+        public bool? IsPaid { get; set; } 
+
     }
 }

@@ -1,5 +1,38 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Home Page";
 }
 
 
+ *@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8" />
+    <title>صفحه اصلی</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: 'B Nazanin';
+            text-align: center;
+            direction: rtl;
+            margin-top: 100px;
+        }
+
+        .btn-primary {
+            font-size: 18px;
+            padding: 10px 30px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>به سامانه پرداخت خوش آمدید</h2>
+    <a href="/Login" class="btn btn-primary mt-4">ورود به سیستم</a>
+</body>
+</html>
