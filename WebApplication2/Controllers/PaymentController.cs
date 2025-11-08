@@ -68,15 +68,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public IActionResult CancelPayment(int id)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    model.IsPaid = false; 
-            //    model.PaymentUrl = null; 
-            //    _context.Orders.Add(model);
-            //    _context.SaveChanges();
-            //}
-            //return RedirectToAction("Payment");
-
             var order = _context.Orders.FirstOrDefault(o => o.UserId == id);
             if (order != null)
             {
