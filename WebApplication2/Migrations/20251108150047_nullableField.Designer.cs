@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication2.Context;
 
@@ -10,9 +11,11 @@ using WebApplication2.Context;
 namespace WebApplication2.Migrations
 {
     [DbContext(typeof(FirstProjectContext))]
-    partial class FirstProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20251108150047_nullableField")]
+    partial class nullableField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,0 +1,20 @@
+﻿@model string
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+	<meta charset="UTF-8">
+	<title>نتیجه پرداخت</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+	<div class="card text-center shadow-lg p-5 rounded-4" style="max-width: 400px;">
+		<h4 class="mb-3 text-primary">وضعیت تراکنش</h4>
+		<p class="fs-5">@Model</p>
+		<a href="/Payment/Payment" class="btn btn-outline-primary mt-3">بازگشت</a>
+	</div>
+</body>
+</html>
