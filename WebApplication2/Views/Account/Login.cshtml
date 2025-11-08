@@ -10,16 +10,21 @@
     <title>ورود به سایت</title>
     <style>
         body {
-            background-color: #f8f9fa;
-            font-family: B nazanin, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
+            background: linear-gradient(135deg, #e9f0fb, #ffffff);
+            font-family: 'Vazirmatn', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            direction: rtl;
         }
 
         .breadcrumb-custom {
-            font-size: 15px;
-            margin-bottom: 20px;
-            margin-top: 20px;
+            font-size: 14px;
+            margin-bottom: 25px;
+            color: #6c757d;
+            text-align: right;
         }
 
         .breadcrumb-item {
@@ -28,72 +33,81 @@
         }
 
         .container {
-            max-width: 400px;
-            height: 100%;
-            margin: 0 auto;
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 450px; /* بزرگ‌تر شد */
+            width: 100%;
+            background-color: #ffffff;
+            padding: 50px 40px; /* فاصله بیشتر داخل فرم */
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-right: 40px;
+        }
+
+            .container:hover {
+                transform: translateY(-3px);
+            }
+
+        h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0057ff;
+            margin-bottom: 30px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* فاصله بین تکست‌باکس‌ها بیشتر شد */
+            text-align: right;
         }
-
-            .form-group input {
-                width: 100%;
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-            }
 
             .form-group label {
                 display: block;
-                margin-bottom: 5px;
-                font-size: 14px;
-                font-weight: bold;
+                margin-bottom: 10px;
+                font-weight: 500;
+                color: #495057;
+                font-size: 15px;
             }
 
-        .remember-me {
-            margin-bottom: 20px;
-        }
-
-        .link {
-            margin-top: 20px;
-        }
-
-            .link a {
-                display: inline-block;
-                margin-right: 10px;
-                color: cornflowerblue;
-                font-size: 14px;
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 14px 14px; /* بزرگ‌تر و راحت‌تر */
+                font-size: 16px;
+                border: 1px solid #ced4da;
+                border-radius: 10px;
+                transition: all 0.3s;
+                margin-right: -10px;
             }
 
-                .link a:hover {
-                    display: inline-block;
-                    margin-right: 10px;
-                    color: darkblue;
-                    font-size: 14px;
+                .form-group input:focus,
+                .form-group textarea:focus {
+                    border-color: #0057ff;
+                    box-shadow: 0 0 0 0.2rem rgba(0, 87, 255, 0.25);
+                    outline: none;
                 }
 
         .btn-success {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
+            padding: 14px;
+            font-size: 17px;
+            font-weight: 600;
             color: #fff;
-            background-color: #28a745;
+            background: linear-gradient(90deg, #0057ff, #007bff);
             border: none;
-            border-radius: 4px;
+            border-radius: 12px;
             cursor: pointer;
+            transition: all 0.3s;
         }
 
             .btn-success:hover {
-                background-color: #218838;
+                background: #0048d4;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             }
 
         .text-danger {
-            color: #dc3545 !important;
+            font-size: 14px;
+            margin-top: 5px;
         }
 
         .alert-success {
@@ -101,7 +115,10 @@
             background-color: #d4edda;
             border-color: #c3e6cb;
             font-size: 15px;
-            max-height: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
         }
 
         .alert-danger {
@@ -109,8 +126,25 @@
             background-color: #f8d7da;
             border-color: #f5c6cb;
             font-size: 15px;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: center;
         }
+
+        a {
+            color: #0057ff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+            a:hover {
+                color: #0048d4;
+                text-decoration: underline;
+            }
     </style>
+
+
 </head>
 <body style="text-align:right;">
     <ul class="breadcrumb-custom" style="text-align: right;">
