@@ -53,7 +53,7 @@ namespace WebApplication2.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 #pragma warning restore 612, 618
         }

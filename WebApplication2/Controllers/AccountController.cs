@@ -14,14 +14,14 @@ namespace WebApplication2.Controllers
 
 
         #region Login
-        [Route("Login")]
+        //[Route("Login")]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("Login")]
+        //[Route("Login")]
         public IActionResult Login(LoginViewModel login)
         {
 
