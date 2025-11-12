@@ -16,9 +16,9 @@ namespace WebApplication2.ViewModels
 
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
-        [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,}$",
-    ErrorMessage = "رمز عبور باید حداقل شامل یک حرف کوچک، یک حرف بزرگ، یک عدد و یک کاراکتر خاص باشد و طول آن حداقل باید ۶ کاراکتر باشد.")]
+    //    [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
+    //    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,}$",
+    //ErrorMessage = "رمز عبور باید حداقل شامل یک حرف کوچک، یک حرف بزرگ، یک عدد و یک کاراکتر خاص باشد و طول آن حداقل باید ۶ کاراکتر باشد.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
