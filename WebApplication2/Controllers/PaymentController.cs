@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +10,7 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
+    [Authorize]
     public class PaymentController : Controller
     {
         private readonly FirstProjectContext _context;
@@ -17,12 +19,40 @@ namespace WebApplication2.Controllers
 
             _context = context;
         }
+
+
+        [HttpGet]
+        public IActionResult PaymentList(int page = 1)
+        {
+            //var payments = _context.Orders.ToList();
+            //return View("PaymentList", payments);
+            int pageSize = 5;
+            var allPayments = _context.Orders
+                .OrderByDescending(p => p.OrderId)
+                .ToList();
+
+            int skip = (page - 1) * pageSize;
+
+            var pagedPayments = allPayments
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            ViewBag.TotalPayments = allPayments.Count;
+            ViewBag.PaidPayments = allPayments.Count(p => p.IsPaid == true);
+            ViewBag.PendingPayments = allPayments.Count(p => p.IsPaid == null);
+            ViewBag.TotalAmount = allPayments.Sum(p => p.Amount);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)allPayments.Count / pageSize);
+
+            return View(pagedPayments);
+        }
+
         [HttpGet]
         [Route("[controller]/[action]")]
         public IActionResult Payment()
         {
-            var payments = _context.Orders.ToList();
-            ViewBag.Payments = payments;
             return View(new Order());
         }
         [HttpPost]
@@ -38,12 +68,12 @@ namespace WebApplication2.Controllers
                 _context.SaveChanges();
                 Console.WriteLine("Saved Successfully: " + model.CustomerName);
 
-                return RedirectToAction("Payment");
+                return RedirectToAction("PaymentList", "Payment");
             }
 
-            ViewBag.Payments = _context.Orders.ToList();
             return View(model);
         }
+
 
         [HttpPost]
         public IActionResult ConfirmPayment(int id)
@@ -56,7 +86,7 @@ namespace WebApplication2.Controllers
             //    _context.SaveChanges();
             //}
             //return RedirectToAction("Payment");
-            var order = _context.Orders.FirstOrDefault(o => o.UserId == id);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             if (order != null)
             {
                 order.IsPaid = true;
@@ -68,7 +98,7 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public IActionResult CancelPayment(int id)
         {
-            var order = _context.Orders.FirstOrDefault(o => o.UserId == id);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             if (order != null)
             {
                 order.IsPaid = false;
@@ -77,10 +107,11 @@ namespace WebApplication2.Controllers
             return RedirectToAction("Payment");
         }
 
+        [AllowAnonymous]
         [HttpGet("Payment/PaymentGateway/{id}")]
         public IActionResult PaymentGateway(int id)
         {
-            var order = _context.Orders.FirstOrDefault(o => o.UserId == id);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             if (order == null)
                 return NotFound();
 
@@ -96,7 +127,7 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public IActionResult CompletePayment(int id)
         {
-            var order = _context.Orders.FirstOrDefault(o => o.UserId == id);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             if (order != null)
             {
                 order.IsPaid = true;
@@ -107,7 +138,7 @@ namespace WebApplication2.Controllers
 
         public IActionResult PaymentSuccess(int id)
         {
-            var order = _context.Orders.FirstOrDefault(o => o.UserId == id);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             return View(order);
         }
 

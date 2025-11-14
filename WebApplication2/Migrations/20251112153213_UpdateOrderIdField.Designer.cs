@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication2.Context;
 
@@ -10,9 +11,11 @@ using WebApplication2.Context;
 namespace WebApplication2.Migrations
 {
     [DbContext(typeof(FirstProjectContext))]
-    partial class FirstProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20251112153213_UpdateOrderIdField")]
+    partial class UpdateOrderIdField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,29 +56,7 @@ namespace WebApplication2.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
+                    b.ToTable("Order");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,7 +2,7 @@
 @model WebApplication2.Models.Order
 @using System.Linq
 @{
-	Layout = null;
+	Layout = "/Views/Shared/_DefaultLayout.cshtml"; 
 	var payments = ViewBag.Payments as List<WebApplication2.Models.Order>;
 }
 
@@ -15,11 +15,13 @@
 	<style>
 		body {
 			background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
-			font-family: 'Vazirmatn', sans-serif;
-			direction: rtl;
 			overflow-x: hidden;
 		}
 
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
 		.payment-wrapper {
 			display: flex;
 			flex-direction: column;
@@ -119,50 +121,6 @@
 				transform: translateY(-2px);
 			}
 
-		.table-container {
-			width: 90%;
-			max-width: 900px;
-			margin: 60px auto 40px;
-			animation: fadeIn 0.8s ease-in;
-		}
-
-		table {
-			border-radius: 12px;
-			overflow: hidden;
-			text-align: center;
-			background: #fff;
-			box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
-		}
-
-		thead {
-			background: linear-gradient(to right, #0057ff, #007bff);
-			color: #fff;
-		}
-
-		tbody tr:nth-child(even) {
-			background-color: #f9f9f9;
-		}
-
-		tbody tr:hover {
-			background-color: #eef4ff;
-			transition: 0.2s;
-		}
-
-		.status-success {
-			color: #16a34a;
-			font-weight: 600;
-		}
-
-		.status-failed {
-			color: #dc2626;
-			font-weight: 600;
-		}
-
-		.status-pending {
-			color: #6b7280;
-			font-weight: 500;
-		}
-
 		/* افکت ظاهر شدن */
 		@@keyframes fadeIn {
 			from {
@@ -219,52 +177,6 @@
 			</form>
 		</div>
 
-		<div class="table-container">
-			@if (payments != null && payments.Any())
-			{
-				<h5 class="text-center mb-3 text-primary fw-bold">لیست تراکنش‌ها</h5>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>نام مشتری</th>
-							<th>مبلغ</th>
-							<th>شماره تماس</th>
-							<th>توضیحات</th>
-							<th>وضعیت</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach (var item in payments)
-						{
-							<tr>
-								<td>@item.CustomerName</td>
-								<td>@item.Amount.ToString("N0") تومان</td>
-								<td>@item.Phone</td>
-								<td>@item.Description</td>
-								<td>
-									<a href="/Payment/PaymentGateway/@item.UserId" target="_blank" class="text-primary">لینک پرداخت</a>
-								</td>
-
-								<td>
-									@if (item.IsPaid == true)
-									{
-										<span class="status-success">پرداخت شد ✅</span>
-									}
-									else if (item.IsPaid == false)
-									{
-										<span class="status-failed">انصراف ❌</span>
-									}
-									else
-									{
-										<span class="status-pending">در انتظار پرداخت</span>
-									}
-								</td>
-							</tr>
-						}
-					</tbody>
-				</table>
-			}
-		</div>
 	</div>
 </body>
 </html>
