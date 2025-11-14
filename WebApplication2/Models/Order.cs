@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication2.Models
@@ -9,7 +9,7 @@ namespace WebApplication2.Models
     public class Order
     {
         [Key]
-        public int UserId { get; set; }
+        public int OrderId { get; set; }
 
         [Display(Name = "نام")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
