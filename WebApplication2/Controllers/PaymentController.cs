@@ -92,7 +92,8 @@ namespace WebApplication2.Controllers
                 order.IsPaid = true;
                 _context.SaveChanges();
             }
-            return RedirectToAction("Payment");
+            return RedirectToAction("PaymentList","Payment");
+
         }
 
         [HttpPost]
@@ -104,7 +105,7 @@ namespace WebApplication2.Controllers
                 order.IsPaid = false;
                 _context.SaveChanges();
             }
-            return RedirectToAction("Payment");
+            return RedirectToAction("PaymentList","Payment");
         }
 
         [AllowAnonymous]

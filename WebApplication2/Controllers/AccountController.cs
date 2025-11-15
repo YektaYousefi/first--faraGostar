@@ -59,7 +59,7 @@ namespace WebApplication2.Controllers
 
                 //return RedirectToAction("Payment", "Payment");
 
-                return View(login);
+                return RedirectToAction("PaymentList", "Payment");
 
             }
 
@@ -70,7 +70,7 @@ namespace WebApplication2.Controllers
         #endregion
 
         #region Logout
-        //[Route("Logout")]
+        [Route("Logout")]
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
