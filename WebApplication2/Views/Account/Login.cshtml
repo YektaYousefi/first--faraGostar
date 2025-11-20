@@ -1,142 +1,133 @@
 ﻿@model WebApplication2.ViewModels.LoginViewModel
 @{
-    Layout = "/Views/Shared/_DefaultLayout.cshtml";
+	Layout = "/Views/Shared/_DefaultLayout.cshtml";
 }
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+	<style>
+		body {
+			overflow: hidden;
+			/* overflow: auto; */
+			background: #f8fafc;
+		}
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+		/* ارتفاع صفحه با در نظر گرفتن هدر */
+		.login-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			background: #fff;
+			display: flex;
+			border-radius: 20px;
+			box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+			overflow: hidden;
+			min-height: calc(100vh - 80px); /* ارتفاع کامل صفحه - ارتفاع هدر */
+			margin-top: 20px;
+		}
 
-<style>
-    /* ارتفاع صفحه با در نظر گرفتن هدر */
-    .login-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: #fff;
-        display: flex;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-        overflow: hidden;
-        min-height: calc(100vh - 80px); /* ارتفاع کامل صفحه - ارتفاع هدر */
-        margin-top: 20px;
-    }
+		.login-box {
+			flex: 0.7;
+			padding: 50px 40px;
+			background: #fff;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
 
-    .login-box {
-        flex: 0.7;
-        padding: 50px 40px;
-        background: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+		.login-image {
+			flex: 1;
+			background: #eef3ff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 40px;
+		}
 
-    .login-image {
-        flex: 1;
-        background: #eef3ff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px;
-    }
+			.login-image img {
+				width: 100%;
+				max-width: 900px;
+			}
 
-        .login-image img {
-            width: 100%;
-            max-width: 900px;
-        }
 
-    body {
-        overflow: hidden;
-        background: #f8fafc;
-    }
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+		.form-group {
+			margin-bottom: 20px;
+		}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 12px !important; /* فاصله بین لیبل و تکست‌باکس */
-            font-weight: 500;
-            color: #495057;
-        }
-        .form-group input {
-            padding: 12px;
-            border: 1px solid #d0d7de;
-            border-radius: 10px;
-            width: 100%;
-            font-size: 15px;
-        }
+			.form-group label {
+				display: block;
+				margin-bottom: 12px !important; /* فاصله بین لیبل و تکست‌باکس */
+				font-weight: 500;
+				color: #495057;
+			}
 
-    .btn-submit {
-        width: 100%;
-        padding: 14px;
-        background: #005dff;
-        color: white;
-        border-radius: 12px;
-        border: none;
-        font-size: 16px;
-        font-weight: 600;
-    }
+			.form-group input {
+				padding: 12px;
+				border: 1px solid #d0d7de;
+				border-radius: 10px;
+				width: 100%;
+				font-size: 15px;
+			}
 
-    @@media(max - width: 960px)
+		.btn-submit {
+			width: 100%;
+			padding: 14px;
+			background: #005dff;
+			color: white;
+			border-radius: 12px;
+			border: none;
+			font-size: 16px;
+			font-weight: 600;
+		}
 
-    {
-        .login-container
+		@@media(max - width: 960px) {
+			.login-container {
+				flex-direction: column;
+				min-height: auto;
+				margin-top: 15px;
+				height: auto;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="login-container">
 
-    {
-        flex-direction: column;
-        min-height: auto;
-        margin-top: 15px;
-        height: auto;
-    }
+		<div class="login-box">
 
-    body {
-        overflow: auto;
-    }
+			<h2 class="text-center mb-3">ورود به سیستم</h2>
+			<p class="text-center text-muted mb-4">لطفا اطلاعات خود را وارد کنید</p>
+			<form asp-action="Login" method="post">
 
-    }
-</style>
+				<div class="form-group">
+					<label asp-for="UserName"></label>
+					<input asp-for="UserName" placeholder="نام کاربری" />
+					<span asp-validation-for="UserName" class="text-danger"></span>
+				</div>
 
-<div class="login-container">
+				<div class="form-group">
+					<label asp-for="Password"></label>
+					<input asp-for="Password" type="password" placeholder="رمز عبور" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
 
-    <div class="login-box">
+				<button class="btn-submit">ورود به سیستم</button>
 
-        <h2 class="text-center mb-3">ورود به سیستم</h2>
-        <p class="text-center text-muted mb-4">لطفا اطلاعات خود را وارد کنید</p>
+			</form>
 
-@*         @if (ViewBag.isSuccess != null)
-        {
-            <div class="alert-success">با موفقیت وارد شدید</div>
-            <script>
-                setTimeout(() => location.href = "/Payment/PaymentList", 2000);
-            </script>
-        }
+		</div>
 
-        @if (ViewBag.ErrorMessage != null)
-        {
-            <div class="alert-danger">@ViewBag.ErrorMessage</div>
-            <br />
-        } *@
+		<div class="login-image">
+			<img src="/img/LoginPic2.png" alt="login">
+		</div>
 
-        <form asp-action="Login" method="post">
+	</div>
 
-            <div class="form-group">
-                <label asp-for="UserName"></label>
-                <input asp-for="UserName" placeholder="نام کاربری" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" type="password" placeholder="رمز عبور" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-
-            <button class="btn-submit">ورود به سیستم</button>
-
-        </form>
-
-    </div>
-
-    <div class="login-image">
-        <img src="/img/LoginPic2.png" alt="login">
-    </div>
-
-</div>
-
+</body>
+</html>
